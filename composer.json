@@ -1,0 +1,41 @@
+{
+    "name": "soved/laravel-sendcloud",
+    "description": "Send parcels using the Sendcloud Shipping API",
+    "keywords": ["laravel", "sendcloud", "soved", "shipping", "parcel"],
+    "type": "library",
+    "require": {
+        "php": "^7.4",
+        "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
+        "illuminate/http": "^7.0|^8.0",
+        "illuminate/support": "^7.0|^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^5.2",
+        "fzaninotto/faker": "^1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Soved\\Laravel\\Sendcloud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sander de Vos",
+            "email": "sander@tutanota.de"
+        }
+    ],
+    "minimum-stability": "stable",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Soved\\Laravel\\Sendcloud\\SendcloudServiceProvider"
+            ]
+        }
+    }
+}
