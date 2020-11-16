@@ -18,10 +18,10 @@ class Sendcloud implements SendcloudContract
         return $this->request('post', 'parcels', $data);
     }
 
-    private function request(string $method, string $api, array $data): array
+    private function request(string $method, string $endpoint, array $data = null): array
     {
         $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
-            ->{$method}($this->getUrl($api), $data);
+            ->{$method}($this->getUrl($endpoint), $data);
 
         // Throw an exception if a client or server error occurred...
         $response->throw();
@@ -29,8 +29,8 @@ class Sendcloud implements SendcloudContract
         return $response->json();
     }
 
-    private function getUrl(string $api): string
+    private function getUrl(string $endpoint): string
     {
-        return self::ENDPOINT.$api;
+        return self::SHIPPING_API.$endpoint;
     }
 }
