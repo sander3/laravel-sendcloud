@@ -4,8 +4,8 @@ namespace Soved\Laravel\Sendcloud;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Lumen\Application as LumenApplication;
+use Soved\Laravel\Sendcloud\Contracts\SendcloudContract;
 use Illuminate\Foundation\Application as LaravelApplication;
-use Soved\Laravel\Sendcloud\Contracts\Sendcloud as SendcloudContract;
 
 class SendcloudServiceProvider extends ServiceProvider
 {
