@@ -40,6 +40,17 @@ abstract class Data implements DataContract
 
     public function toArray()
     {
-        return get_object_vars($this);
+        $attributes = get_object_vars($this);
+
+        return array_map([$this, 'transform'], $attributes);
+    }
+
+    private function transform($item)
+    {
+        if ($item instanceof DataContract) {
+            return $item->toArray();
+        }
+
+        return $item;
     }
 }
