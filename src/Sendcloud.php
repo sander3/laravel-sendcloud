@@ -15,6 +15,15 @@ class Sendcloud implements SendcloudContract
         return $this->request('post', self::PARCELS_ENDPOINT, $data);
     }
 
+    public function shippingMethods(array $optionalParameters = []): array
+    {
+        $query = http_build_query($optionalParameters);
+
+        $endpoint = self::SHIPPING_METHODS_ENDPOINT.'?'.$query;
+
+        return $this->request('get', $endpoint);
+    }
+
     private function request(string $method, string $endpoint, array $data = null): array
     {
         $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
