@@ -11,6 +11,10 @@ interface SendcloudContract
     public const PARCELS_ENDPOINT = 'parcels';
     public const SHIPPING_METHODS_ENDPOINT = 'shipping_methods';
 
+    public function getParcels(array $optionalParameters = []): array;
+
+    public function getParcel(int $id): array;
+
     public function createParcel(RecipientData $recipient, array $optionalParameters = []): array;
 
     public function shippingMethods(array $optionalParameters = []): array;

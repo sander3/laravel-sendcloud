@@ -8,6 +8,22 @@ use Soved\Laravel\Sendcloud\Contracts\SendcloudContract;
 
 class Sendcloud implements SendcloudContract
 {
+    public function getParcels(array $optionalParameters = []): array
+    {
+        $query = http_build_query($optionalParameters);
+
+        $endpoint = self::PARCELS_ENDPOINT.'?'.$query;
+
+        return $this->request('get', $endpoint);
+    }
+
+    public function getParcel(int $id): array
+    {
+        $endpoint = self::PARCELS_ENDPOINT.'/'.$id;
+
+        return $this->request('get', $endpoint);
+    }
+
     public function createParcel(RecipientData $recipient, array $optionalParameters = []): array
     {
         $data = ['parcel' => $recipient->toArray() + $optionalParameters];

@@ -1,5 +1,13 @@
 # Send parcels using the Sendcloud Shipping API
 
+⚠️ Work in progress!
+
+Supported endpoints:
+- `GET` parcels
+- `GET` parcels/{id}
+- `POST` parcels
+- `GET` shipping_methods
+
 [![tests](https://github.com/sander3/laravel-sendcloud/workflows/Laravel/badge.svg)](https://github.com/sander3/laravel-sendcloud/actions?query=workflow%3ALaravel)
 [![codecov](https://codecov.io/gh/sander3/laravel-sendcloud/branch/master/graph/badge.svg)](https://codecov.io/gh/sander3/laravel-sendcloud)
 
