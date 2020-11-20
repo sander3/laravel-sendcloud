@@ -3,7 +3,8 @@
 namespace Soved\Laravel\Sendcloud;
 
 use Illuminate\Support\Facades\Http;
-use Soved\Laravel\Sendcloud\Data\RecipientData;
+use Soved\Laravel\Sendcloud\Data\ParcelData;
+use Soved\Laravel\Sendcloud\Data\SenderData;
 use Soved\Laravel\Sendcloud\Contracts\SendcloudContract;
 
 class Sendcloud implements SendcloudContract
@@ -24,9 +25,13 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', $endpoint);
     }
 
-    public function createParcel(RecipientData $recipient, array $optionalParameters = []): array
+    public function createParcel(ParcelData $parcel, SenderData $sender = null): array
     {
-        $data = ['parcel' => $recipient->toArray() + $optionalParameters];
+        $data = ['parcel' => $parcel->toArray()];
+
+        if (! is_null($sender)) {
+            $data['parcel'] += $sender->toArray();
+        }
 
         return $this->request('post', self::PARCELS_ENDPOINT, $data);
     }

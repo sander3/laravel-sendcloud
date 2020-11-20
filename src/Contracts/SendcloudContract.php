@@ -2,7 +2,8 @@
 
 namespace Soved\Laravel\Sendcloud\Contracts;
 
-use Soved\Laravel\Sendcloud\Data\RecipientData;
+use Soved\Laravel\Sendcloud\Data\ParcelData;
+use Soved\Laravel\Sendcloud\Data\SenderData;
 
 interface SendcloudContract
 {
@@ -15,7 +16,7 @@ interface SendcloudContract
 
     public function getParcel(int $id): array;
 
-    public function createParcel(RecipientData $recipient, array $optionalParameters = []): array;
+    public function createParcel(ParcelData $parcel, SenderData $sender = null): array;
 
     public function shippingMethods(array $optionalParameters = []): array;
 }
