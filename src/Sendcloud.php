@@ -52,6 +52,16 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', $endpoint);
     }
 
+    public function download(string $url): string
+    {
+        $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
+            ->get($url);
+
+        $response->throw();
+
+        return $response->body();
+    }
+
     private function request(string $method, string $endpoint, array $data = [], bool $throwException = true): array
     {
         $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
