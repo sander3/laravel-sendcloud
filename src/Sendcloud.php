@@ -36,6 +36,13 @@ class Sendcloud implements SendcloudContract
         return $this->request('post', self::PARCELS_ENDPOINT, $data);
     }
 
+    public function deleteParcel(int $id): array
+    {
+        $endpoint = self::PARCELS_ENDPOINT.'/'.$id.'/cancel';
+
+        return $this->request('post', $endpoint, [], false);
+    }
+
     public function shippingMethods(array $optionalParameters = []): array
     {
         $query = http_build_query($optionalParameters);
@@ -45,13 +52,15 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', $endpoint);
     }
 
-    private function request(string $method, string $endpoint, array $data = null): array
+    private function request(string $method, string $endpoint, array $data = [], bool $throwException = true): array
     {
         $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
             ->{$method}($this->getUrl($endpoint), $data);
 
-        // Throw an exception if a client or server error occurred...
-        $response->throw();
+        if ($throwException) {
+            // Throw an exception if a client or server error occurred...
+            $response->throw();
+        }
 
         return $response->json();
     }
