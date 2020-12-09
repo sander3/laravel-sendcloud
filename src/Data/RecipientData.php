@@ -8,7 +8,7 @@ class RecipientData extends Data
     public string $company_name;
     public string $address;
     public string $address_2;
-    public string $house_number;
+    public ?string $house_number;
     public string $city;
     public string $postal_code;
     public string $to_post_number;
