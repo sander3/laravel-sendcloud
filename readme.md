@@ -4,6 +4,7 @@
 
 Supported endpoints:
 - `GET` parcels
+- `GET` parcels/statuses
 - `GET` parcels/{id}
 - `POST` parcels
 - `POST` parcels/{id}/cancel

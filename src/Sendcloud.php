@@ -43,6 +43,13 @@ class Sendcloud implements SendcloudContract
         return $this->request('post', $endpoint, [], false);
     }
 
+    public function parcelStatuses(): array
+    {
+        $endpoint = self::PARCELS_ENDPOINT.'/statuses';
+
+        return $this->request('get', $endpoint);
+    }
+
     public function shippingMethods(array $optionalParameters = []): array
     {
         $query = http_build_query($optionalParameters);

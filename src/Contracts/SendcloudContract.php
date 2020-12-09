@@ -18,5 +18,11 @@ interface SendcloudContract
 
     public function createParcel(ParcelData $parcel, SenderData $sender = null): array;
 
+    public function deleteParcel(int $id): array;
+
+    public function parcelStatuses(): array;
+
     public function shippingMethods(array $optionalParameters = []): array;
+
+    public function download(string $url): string;
 }
