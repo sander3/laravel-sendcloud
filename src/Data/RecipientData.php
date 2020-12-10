@@ -14,7 +14,7 @@ class RecipientData extends Data
     public string $to_post_number;
     public string $country;
     public string $country_state;
-    public int $telephone;
+    public string $telephone;
     public string $email;
 
     public array $required = [

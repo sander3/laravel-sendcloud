@@ -12,7 +12,7 @@ class SenderData extends Data
     public string $from_city;
     public string $from_postal_code;
     public string $from_country;
-    public int $from_telephone;
+    public string $from_telephone;
     public string $from_email;
 
     public array $required = [
