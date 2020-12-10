@@ -52,11 +52,7 @@ class Sendcloud implements SendcloudContract
 
     public function shippingMethods(array $optionalParameters = []): array
     {
-        $query = http_build_query($optionalParameters);
-
-        $endpoint = self::SHIPPING_METHODS_ENDPOINT.'?'.$query;
-
-        return $this->request('get', $endpoint);
+        return $this->request('get', self::SHIPPING_METHODS_ENDPOINT, $optionalParameters);
     }
 
     public function download(string $url): string
