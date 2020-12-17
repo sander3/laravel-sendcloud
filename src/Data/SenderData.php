@@ -8,7 +8,7 @@ class SenderData extends Data
     public string $from_company_name;
     public string $from_address_1;
     public string $from_address_2;
-    public string $from_house_number;
+    public ?string $from_house_number;
     public string $from_city;
     public string $from_postal_code;
     public string $from_country;
