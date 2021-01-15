@@ -20,7 +20,6 @@ class RecipientData extends Data
     public array $required = [
         'name',
         'address',
-        'house_number',
         'city',
         'postal_code',
         'country',

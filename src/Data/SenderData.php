@@ -18,7 +18,6 @@ class SenderData extends Data
     public array $required = [
         'from_name',
         'from_address_1',
-        'from_house_number',
         'from_city',
         'from_postal_code',
         'from_country',
