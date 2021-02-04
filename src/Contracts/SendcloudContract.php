@@ -25,4 +25,6 @@ interface SendcloudContract
     public function shippingMethods(array $optionalParameters = []): array;
 
     public function download(string $url): string;
+
+    public function verbose(bool $verbose = true): self;
 }

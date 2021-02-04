@@ -9,6 +9,8 @@ use Soved\Laravel\Sendcloud\Contracts\SendcloudContract;
 
 class Sendcloud implements SendcloudContract
 {
+    private bool $verbose = false;
+
     public function getParcels(array $optionalParameters = []): array
     {
         $query = http_build_query($optionalParameters);
@@ -65,10 +67,24 @@ class Sendcloud implements SendcloudContract
         return $response->body();
     }
 
+    public function verbose(bool $verbose = true): self
+    {
+        $this->verbose = $verbose;
+
+        return $this;
+    }
+
     private function request(string $method, string $endpoint, array $data = [], bool $throwException = true): array
     {
-        $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
-            ->{$method}($this->getUrl($endpoint), $data);
+        $request = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'));
+
+        if ($this->verbose) {
+            $request = $request->withOptions([
+                'query' => ['errors' => 'verbose'],
+            ]);
+        }
+
+        $response = $request->{$method}($this->getUrl($endpoint), $data);
 
         if ($throwException) {
             // Throw an exception if a client or server error occurred...
