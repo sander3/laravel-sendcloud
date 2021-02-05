@@ -51,6 +51,10 @@ abstract class Data implements DataContract
             return $item->toArray();
         }
 
+        if (is_array($item)) {
+            return array_map([$this, 'transform'], $item);
+        }
+
         return $item;
     }
 }
