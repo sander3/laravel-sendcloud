@@ -14,6 +14,10 @@ class SenderData extends Data
     public string $from_country;
     public ?string $from_telephone;
     public ?string $from_email;
+    public ?string $from_vat_number;
+    public ?string $from_eori_number;
+    public ?string $from_inbound_vat_number;
+    public ?string $from_inbound_eori_number;
 
     public array $required = [
         'from_name',
