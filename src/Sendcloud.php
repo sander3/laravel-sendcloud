@@ -80,7 +80,7 @@ class Sendcloud implements SendcloudContract
 
         if ($this->verbose) {
             $request = $request->withOptions([
-                'query' => ['errors' => 'verbose'],
+                'query' => ['errors' => 'verbose-carrier'],
             ]);
         }
 
