@@ -16,7 +16,7 @@ interface SendcloudContract
 
     public function getParcel(int $id): array;
 
-    public function createParcel(ParcelData $parcel, SenderData $sender = null): array;
+    public function createParcel(ParcelData $parcel, SenderData $sender = null, bool $includeCarrierErrors = false): array;
 
     public function deleteParcel(int $id): array;
 
