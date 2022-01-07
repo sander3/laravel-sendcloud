@@ -27,15 +27,20 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', $endpoint);
     }
 
-    public function createParcel(ParcelData $parcel, SenderData $sender = null): array
+    public function createParcel(ParcelData $parcel, SenderData $sender = null, bool $includeCarrierErrors = false): array
     {
         $data = ['parcel' => $parcel->toArray()];
 
         if (! is_null($sender)) {
             $data['parcel'] += $sender->toArray();
         }
+        
+        $endpoint = self::PARCELS_ENDPOINT;
+        if ($includeCarrierErrors) {
+            $endpoint .= '?errors=verbose-carrier';
+        }
 
-        return $this->request('post', self::PARCELS_ENDPOINT, $data);
+        return $this->request('post', $endpoint, $data);
     }
 
     public function deleteParcel(int $id): array
