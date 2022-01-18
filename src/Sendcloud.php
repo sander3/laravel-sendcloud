@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Http;
 use Soved\Laravel\Sendcloud\Data\ParcelData;
 use Soved\Laravel\Sendcloud\Data\SenderData;
 use Soved\Laravel\Sendcloud\Contracts\SendcloudContract;
+use Soved\Laravel\Sendcloud\Exceptions\ResponseException;
 
 class Sendcloud implements SendcloudContract
 {
@@ -91,7 +92,13 @@ class Sendcloud implements SendcloudContract
             $response->throw();
         }
 
-        return $response->json();
+        $decoded = $response->json();
+
+        if (null === $decoded) {
+            throw new ResponseException();
+        }
+
+        return $decoded;
     }
 
     private function getUrl(string $endpoint): string

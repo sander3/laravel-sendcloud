@@ -1,21 +1,10 @@
 # Send parcels using the Sendcloud Shipping API
 
-⚠️ Work in progress!
-
-Supported endpoints:
-- `GET` parcels
-- `GET` parcels/statuses
-- `GET` parcels/{id}
-- `POST` parcels
-- `POST` parcels/{id}/cancel
-- `GET` shipping_methods
-
 [![tests](https://github.com/sander3/laravel-sendcloud/workflows/Laravel/badge.svg)](https://github.com/sander3/laravel-sendcloud/actions?query=workflow%3ALaravel)
-[![codecov](https://codecov.io/gh/sander3/laravel-sendcloud/branch/master/graph/badge.svg)](https://codecov.io/gh/sander3/laravel-sendcloud)
 
 ## Requirements
 
-- PHP >= 7.4
+- PHP >= 8.0
 - Laravel >= 8.0
 
 ## Security Vulnerabilities
