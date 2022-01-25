@@ -14,11 +14,9 @@ class Sendcloud implements SendcloudContract
 
     public function getParcels(array $optionalParameters = []): array
     {
-        $query = http_build_query($optionalParameters);
+        $endpoint = self::PARCELS_ENDPOINT;
 
-        $endpoint = self::PARCELS_ENDPOINT.'?'.$query;
-
-        return $this->request('get', $endpoint);
+        return $this->request('get', $endpoint, query: $optionalParameters);
     }
 
     public function getParcel(int $id): array
@@ -75,13 +73,17 @@ class Sendcloud implements SendcloudContract
         return $this;
     }
 
-    private function request(string $method, string $endpoint, array $data = [], bool $throwException = true): array
+    private function request(string $method, string $endpoint, array $data = [], bool $throwException = true, array $query = []): array
     {
         $request = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'));
 
         if ($this->verbose) {
+            $query['errors'] ??= 'verbose-carrier';
+        }
+
+        if ($query) {
             $request = $request->withOptions([
-                'query' => ['errors' => 'verbose-carrier'],
+                'query' => $query,
             ]);
         }
 
