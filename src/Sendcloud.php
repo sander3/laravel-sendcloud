@@ -76,7 +76,7 @@ class Sendcloud implements SendcloudContract
     {
         $request = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'));
 
-        if ($this->verbose && !isset($query['errors'])) {
+        if ($this->verbose && !array_key_exists('errors', $query)) {
             $query['errors'] = 'verbose';
         }
 
