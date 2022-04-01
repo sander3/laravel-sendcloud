@@ -12,6 +12,15 @@ class Sendcloud implements SendcloudContract
 {
     private bool $verbose = false;
 
+    public function __construct(
+        private ?string $apiKey = null,
+        private ?string $apiSecret = null
+    )
+    {
+        $this->apiKey ??= config('sendcloud.key');
+        $this->apiSecret ??= config('sendcloud.secret');
+    }
+
     public function getParcels(array $optionalParameters = []): array
     {
         $endpoint = self::PARCELS_ENDPOINT;
@@ -58,7 +67,7 @@ class Sendcloud implements SendcloudContract
 
     public function download(string $url): string
     {
-        $response = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'))
+        $response = Http::withBasicAuth($this->apiKey, $this->apiSecret)
             ->get($url);
 
         $response->throw();
@@ -75,7 +84,7 @@ class Sendcloud implements SendcloudContract
 
     private function request(string $method, string $endpoint, array $data = [], bool $throwException = true, array $query = []): array
     {
-        $request = Http::withBasicAuth(config('sendcloud.key'), config('sendcloud.secret'));
+        $request = Http::withBasicAuth($this->apiKey, $this->apiSecret);
 
         if ($this->verbose) {
             $query['errors'] ??= 'verbose-carrier';
