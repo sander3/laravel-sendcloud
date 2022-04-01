@@ -18,7 +18,7 @@ class Sendcloud implements SendcloudContract
     )
     {
         $this->apiKey ??= config('sendcloud.key');
-        $this->apiSecret ??= $this->apiSecret ?? config('sendcloud.secret');
+        $this->apiSecret ??= config('sendcloud.secret');
     }
 
     public function getParcels(array $optionalParameters = []): array
