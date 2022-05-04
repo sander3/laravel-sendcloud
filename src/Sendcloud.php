@@ -57,14 +57,14 @@ class Sendcloud implements SendcloudContract
     }
 
     public function shippingPrice(
-        int $shipingMethodId,
+        int $shippingMethodId,
         string $fromCountry,
         int $weight,
         string $weightUnit,
         array $optionalParameters = []
     ): array {
         $parameters = [
-            'shipping_method_id' => $shipingMethodId,
+            'shipping_method_id' => $shippingMethodId,
             'from_country'       => $fromCountry,
             'weight'             => $weight,
             'weight_unit'        => $weightUnit,
