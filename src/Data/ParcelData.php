@@ -4,6 +4,8 @@ namespace Soved\Laravel\Sendcloud\Data;
 
 class ParcelData extends RecipientData
 {
+    public ?string $house_number;
+    public ?string $telephone;
     public int $sender_address;
     public string $customs_invoice_nr;
     public int $customs_shipment_type;
