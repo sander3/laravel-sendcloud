@@ -61,11 +61,27 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', $endpoint);
     }
 
+    public function getPickups(array $optionalParameters = []): array
+    {
+        $endpoint = self::PICKUPS_ENDPOINT;
+
+        return $this->request('get', $endpoint, query: $optionalParameters);
+    }
+
+    public function getPickup(int $id): array
+    {
+        $endpoint = self::PICKUPS_ENDPOINT.'/'.$id;
+
+        return $this->request('get', $endpoint);
+    }
+
     public function createPickup(PickupData $parcel): array
     {
+        $endpoint = self::PICKUPS_ENDPOINT.'/';
+
         $data = $parcel->toArray();
 
-        return $this->request('post', 'pickups/', $data);
+        return $this->request('post', $endpoint, $data);
     }
 
     public function shippingMethods(array $optionalParameters = []): array
@@ -111,9 +127,7 @@ class Sendcloud implements SendcloudContract
 
     private function request(string $method, string $endpoint, array $data = [], bool $throwException = true, array $query = []): array
     {
-        $request = Http::withOptions([
-            'allow_redirects' => false,
-        ])->withBasicAuth($this->apiKey, $this->apiSecret);
+        $request = Http::withBasicAuth($this->apiKey, $this->apiSecret);
 
         if ($this->verbose) {
             $query['errors'] ??= 'verbose-carrier';

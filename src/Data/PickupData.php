@@ -10,6 +10,7 @@ class PickupData extends RecipientData
     public Carbon $pickup_until;
     public int $quantity;
     public string $telephone;
+    public string $email;
     public ?string $reference;
     public ?string $special_instructions;
     public string $total_weight;
@@ -26,6 +27,7 @@ class PickupData extends RecipientData
         'pickup_until',
         'quantity',
         'telephone',
+        'email',
         'total_weight',
         'created_at',
         'carrier',
