@@ -77,7 +77,7 @@ class Sendcloud implements SendcloudContract
 
     public function createPickup(PickupData $parcel): array
     {
-        $endpoint = self::PICKUPS_ENDPOINT.'/';
+        $endpoint = self::PICKUPS_ENDPOINT;
 
         $data = $parcel->toArray();
 
