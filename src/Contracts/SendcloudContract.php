@@ -24,6 +24,8 @@ interface SendcloudContract
 
     public function shippingMethods(array $optionalParameters = []): array;
 
+    public function getShippingProducts(string $fromCountry, string $toCountry, int $weight, string $weightUnit, array $optionalParameters = []): array;
+
     public function shippingPrice(int $shippingMethodId, string $fromCountry, int $weight, string $weightUnit, array $optionalParameters = []): array;
 
     public function download(string $url): string;

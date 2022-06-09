@@ -65,6 +65,25 @@ class Sendcloud implements SendcloudContract
         return $this->request('get', self::SHIPPING_METHODS_ENDPOINT, $optionalParameters);
     }
 
+    public function getShippingProducts(
+        string $fromCountry,
+        string $toCountry,
+        int $weight,
+        string $weightUnit,
+        array $optionalParameters = []
+    ): array {
+        $parameters = [
+            'from_country' => $fromCountry,
+            'to_country'   => $toCountry,
+            'weight'       => $weight,
+            'weight_unit'  => $weightUnit,
+        ];
+
+        $parameters = array_merge($parameters, $optionalParameters);
+
+        return $this->request('get', 'shipping-products', $parameters);
+    }
+
     public function shippingPrice(
         int $shippingMethodId,
         string $fromCountry,
