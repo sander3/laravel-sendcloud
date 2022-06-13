@@ -68,15 +68,11 @@ class Sendcloud implements SendcloudContract
     public function getShippingProducts(
         string $fromCountry,
         string $toCountry,
-        int $weight,
-        string $weightUnit,
         array $optionalParameters = []
     ): array {
         $parameters = [
             'from_country' => $fromCountry,
             'to_country'   => $toCountry,
-            'weight'       => $weight,
-            'weight_unit'  => $weightUnit,
         ];
 
         $parameters = array_merge($parameters, $optionalParameters);
